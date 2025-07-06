@@ -24,10 +24,10 @@
 
     body, html {
       height: 100%;
+      min-height: 100dvh; /* Better mobile support */
       background: var(--background-color);
       overflow: hidden;
       position: relative;
-      min-height: 100vh;
     }
 
     #emoji-background {
@@ -45,7 +45,7 @@
       opacity: 0.30;
       font-size: 28px;
       justify-content: center;
-      align-content: center;
+      align-content: start; /* Fix vertical gap */
     }
 
     .emoji {
@@ -61,7 +61,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      min-height: 100dvh; /* Match emoji background */
       padding: 1rem;
       background: transparent;
     }
@@ -146,7 +146,7 @@
     <div class="container">
       <h1>Little Miss Dandelion</h1>
       <p class="bio">Non-Binary ⚥ (She/Her They/Them)</p>
-      <p class="bio">Little🤏,Transgender🏳️‍⚧️, Transhuman🧬, Neurodivergent♾️, Closed Polyamorous💞.</p>
+      <p class="bio">Little🤏, Transgender🏳️‍⚧️, Transhuman🧬, Neurodivergent♾️, Closed Polyamorous💞.</p>
 
       <a href="https://t.me/lilmissdandelion" class="link" target="_blank" rel="noopener noreferrer">
         <img src="telegram.png" alt="Telegram">
@@ -156,25 +156,8 @@
         <img src="bluesky.png" alt="Bluesky">
         Bluesky
       </a>
-      <!--
-      <a href="https://instagram.com" class="link" target="_blank" rel="noopener noreferrer">
-        <span class="material-icons">photo_camera</span>
-        Instagram
-      </a>
-      <a href="https://github.com" class="link" target="_blank" rel="noopener noreferrer">
-        <span class="material-icons">code</span>
-        GitHub
-      </a>
-    </div>
-    -->
-<!--
-    <div class="container">
-      <img src="https://via.placeholder.com/100" alt="Avatar" class="avatar" />
-      <h1>Jane Doe</h1>
-      <p class="bio">Content Creator | Tech Enthusiast | Lifelong Learner</p>
     </div>
   </div>
--->
 
   <script>
     const emojis = ['🍬', '🍭', '🍫', '🌈'];
@@ -187,7 +170,7 @@
       const emojiSize = 40;
       const gap = 5;
       const cols = Math.floor(vw / (emojiSize + gap));
-      const rows = Math.floor(vh / (emojiSize + gap));
+      const rows = Math.ceil(vh / (emojiSize + gap)) + 2; // Fill more rows
 
       emojiBg.style.gridTemplateColumns = `repeat(${cols}, ${emojiSize}px)`;
       emojiBg.style.gridAutoRows = `${emojiSize}px`;
